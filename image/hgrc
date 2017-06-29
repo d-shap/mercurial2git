@@ -1,0 +1,6 @@
+[extensions]
+hgext.bookmarks =
+git             =
+
+[git]
+intree          = 1

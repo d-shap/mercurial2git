@@ -1,0 +1,74 @@
+#!/bin/bash
+if [ "$HG_REPO_URL" == "" ];
+then
+    exit -1
+fi
+if [ "$GIT_REPO_URL" == "" ];
+then
+    exit -1
+fi
+
+branchCount=0
+while [ true ];
+do
+    nextBranchNumber=$((branchCount+1))
+
+    hgBranchName="HG_BRANCH_NAME_$nextBranchNumber"
+    hgBranch=${!hgBranchName}
+    if [ "$hgBranch" == "" ];
+    then
+        break
+    fi
+
+    gitBranchName="GIT_BRANCH_NAME_$nextBranchNumber"
+    gitBranch=${!gitBranchName}
+    if [ "$gitBranch" == "" ];
+    then
+        break
+    fi
+
+    branchCount=$nextBranchNumber
+done
+
+if [ $branchCount -le 0 ];
+then
+    exit -1
+fi
+
+cd ~
+hg clone $HG_REPO_URL repository
+cd ~/repository
+
+for (( branchIndex=1; branchIndex<=$branchCount; branchIndex++ ));
+do
+    hgBranchName="HG_BRANCH_NAME_$branchIndex"
+    hgBranch="${!hgBranchName}"
+
+    gitBranchName="GIT_BRANCH_NAME_$branchIndex"
+    gitBranch="${!gitBranchName}"
+
+    if [ "$gitBranch" == "$hgBranch" ];
+    then
+        hg bookmark -r "$hgBranch" "git-$hgBranch"
+    else
+        hg bookmark -r "$hgBranch" "$gitBranch"
+    fi
+done
+
+hg gexport
+
+for (( branchIndex=1; branchIndex<=$branchCount; branchIndex++ ));
+do
+    hgBranchName="HG_BRANCH_NAME_$branchIndex"
+    hgBranch="${!hgBranchName}"
+
+    gitBranchName="GIT_BRANCH_NAME_$branchIndex"
+    gitBranch="${!gitBranchName}"
+
+    if [ "$gitBranch" == "$hgBranch" ];
+    then
+        git branch -m "git-$hgBranch" "$gitBranch"
+    fi
+
+    git push -u $GIT_REPO_URL "$gitBranch"
+done
