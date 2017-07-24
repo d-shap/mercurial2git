@@ -38,7 +38,6 @@ Usage
 ```
 sudo docker run \
     --rm \
-    --name mercurial2git \
     -it \
     -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository' \
     -e GIT_REPO_URL='https://user:password@github.com/user/repository.git' \
@@ -46,17 +45,17 @@ sudo docker run \
     -e GIT_BRANCH_NAME_1='master' \
         mercurial2git
 ```
-| Parameter         | Value                              |
-| :---------------- | :--------------------------------- |
-| MERCURIAL_REPO_URL       | Mercurial repository URL           |
-| GIT_REPO_URL      | Mercurial repository URL           |
-| MERCURIAL_BRANCH_NAME_1  | First mercurial repository branch  |
-| GIT_BRANCH_NAME_1 | First git repository branch        |
-| MERCURIAL_BRANCH_NAME_2  | Second mercurial repository branch |
-| GIT_BRANCH_NAME_2 | Second git repository branch       |
-| ...               | ...                                |
-| MERCURIAL_BRANCH_NAME_X  | Last mercurial repository branch   |
-| GIT_BRANCH_NAME_X | Last git repository branch         |
+| Parameter               | Value                              |
+| :---------------------- | :--------------------------------- |
+| MERCURIAL_REPO_URL      | Mercurial repository URL           |
+| GIT_REPO_URL            | Mercurial repository URL           |
+| MERCURIAL_BRANCH_NAME_1 | First mercurial repository branch  |
+| GIT_BRANCH_NAME_1       | First git repository branch        |
+| MERCURIAL_BRANCH_NAME_2 | Second mercurial repository branch |
+| GIT_BRANCH_NAME_2       | Second git repository branch       |
+| ...                     | ...                                |
+| MERCURIAL_BRANCH_NAME_X | Last mercurial repository branch   |
+| GIT_BRANCH_NAME_X       | Last git repository branch         |
 
 Cron job
 --------
