@@ -39,9 +39,9 @@ then
     echo "No branches defined"
     exit 1
 fi
-echo "Maximum branch number: $maxBranchNumber"
 
 cd ~
+echo "Clone $MERCURIAL_REPO_URL repository"
 hg clone $MERCURIAL_REPO_URL repository
 if [ $? -ne 0 ];
 then
