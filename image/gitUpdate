@@ -1,11 +1,11 @@
 #!/bin/bash
 if [ "$HG_REPO_URL" == "" ];
 then
-    exit -1
+    exit 1
 fi
 if [ "$GIT_REPO_URL" == "" ];
 then
-    exit -1
+    exit 1
 fi
 
 branchCount=0
@@ -32,11 +32,16 @@ done
 
 if [ $branchCount -le 0 ];
 then
-    exit -1
+    exit 1
 fi
 
 cd ~
 hg clone $HG_REPO_URL repository
+if [ $? -ne 0 ];
+then
+    echo "Mercurial clone failed"
+    exit 1
+fi
 cd ~/repository
 
 for (( branchIndex=1; branchIndex<=$branchCount; branchIndex++ ));
