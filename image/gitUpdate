@@ -10,30 +10,36 @@ then
     exit 1
 fi
 
-branchCount=0
+maxBranchNumber=0
+hashBranches=0
+emptyBranchNumberCount=0
+maxEmptyBranchNumberCount=100
 while [ true ];
 do
-    nextBranchNumber=$((branchCount+1))
+    maxBranchNumber=$((maxBranchNumber+1))
 
-    mercurialBranchName="MERCURIAL_BRANCH_NAME_$nextBranchNumber"
+    mercurialBranchName="MERCURIAL_BRANCH_NAME_$maxBranchNumber"
     mercurialBranch=${!mercurialBranchName}
-    if [ "$mercurialBranch" == "" ];
-    then
-        break
-    fi
 
-    gitBranchName="GIT_BRANCH_NAME_$nextBranchNumber"
+    gitBranchName="GIT_BRANCH_NAME_$maxBranchNumber"
     gitBranch=${!gitBranchName}
-    if [ "$gitBranch" == "" ];
-    then
-        break
-    fi
 
-    branchCount=$nextBranchNumber
+    if [ "$mercurialBranch" == "" ] || [ "$gitBranch" == "" ];
+    then
+        emptyBranchNumberCount=$((emptyBranchNumberCount+1))
+        if [ $emptyBranchNumberCount -gt $maxEmptyBranchNumberCount ];
+        then
+            break
+        fi
+    else
+        hashBranches=1
+        emptyBranchNumberCount=0
+    fi
 done
 
-if [ $branchCount -le 0 ];
+if [ $hashBranches -ne 1 ];
 then
+    echo "No branches defined"
     exit 1
 fi
 
