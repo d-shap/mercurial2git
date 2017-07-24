@@ -1,4 +1,4 @@
 #!/bin/bash
 docker build \
-    -t remotehggit \
+    -t mercurial2git \
     image
