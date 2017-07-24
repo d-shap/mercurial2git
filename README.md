@@ -77,5 +77,5 @@ sudo vi /usr/bin/m2g
 
 Create cron job
 ```
-sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g"; } | sudo crontab -
+sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g"; echo ""; } | sudo crontab -
 ```
