@@ -11,7 +11,7 @@ then
 fi
 
 maxBranchNumber=0
-hashBranches=0
+hasBranches=0
 emptyBranchNumberCount=0
 maxEmptyBranchNumberCount=100
 while [ true ];
@@ -21,27 +21,25 @@ do
     mercurialBranchName="MERCURIAL_BRANCH_NAME_$maxBranchNumber"
     mercurialBranch=${!mercurialBranchName}
 
-    gitBranchName="GIT_BRANCH_NAME_$maxBranchNumber"
-    gitBranch=${!gitBranchName}
-
-    if [ "$mercurialBranch" == "" ] || [ "$gitBranch" == "" ];
+    if [ "$mercurialBranch" == "" ];
     then
         emptyBranchNumberCount=$((emptyBranchNumberCount+1))
-        if [ $emptyBranchNumberCount -gt $maxEmptyBranchNumberCount ];
+        if [ $emptyBranchNumberCount -ge $maxEmptyBranchNumberCount ];
         then
             break
         fi
     else
-        hashBranches=1
+        hasBranches=1
         emptyBranchNumberCount=0
     fi
 done
 
-if [ $hashBranches -ne 1 ];
+if [ $hasBranches -ne 1 ];
 then
     echo "No branches defined"
     exit 1
 fi
+echo "Maximum branch number: $maxBranchNumber"
 
 cd ~
 hg clone $MERCURIAL_REPO_URL repository
@@ -59,9 +57,14 @@ do
 
     gitBranchName="GIT_BRANCH_NAME_$branchIndex"
     gitBranch="${!gitBranchName}"
-
-    if [ "$mercurialBranch" != "" ] && [ "$gitBranch" != "" ];
+    if [ "$gitBranch" == "" ];
     then
+        gitBranch=$mercurialBranch
+    fi
+
+    if [ "$mercurialBranch" != "" ];
+    then
+        echo "Create bookmark: $mercurialBranch -> $gitBranch"
         if [ "$gitBranch" == "$mercurialBranch" ];
         then
             hg bookmark -r "$mercurialBranch" "git-$mercurialBranch"
@@ -80,13 +83,18 @@ do
 
     gitBranchName="GIT_BRANCH_NAME_$branchIndex"
     gitBranch="${!gitBranchName}"
+    if [ "$gitBranch" == "" ];
+    then
+        gitBranch=$mercurialBranch
+    fi
 
-    if [ "$mercurialBranch" != "" ] && [ "$gitBranch" != "" ];
+    if [ "$mercurialBranch" != "" ];
     then
         if [ "$gitBranch" == "$mercurialBranch" ];
         then
             git branch -m "git-$mercurialBranch" "$gitBranch"
         fi
+        echo "Push git branch $gitBranch"
         git push -u $GIT_REPO_URL "$gitBranch"
     fi
 done
