@@ -48,7 +48,7 @@ sudo docker run \
 | Parameter               | Value                              |
 | :---------------------- | :--------------------------------- |
 | MERCURIAL_REPO_URL      | Mercurial repository URL           |
-| GIT_REPO_URL            | Mercurial repository URL           |
+| GIT_REPO_URL            | Git repository URL                 |
 | MERCURIAL_BRANCH_NAME_1 | First mercurial repository branch  |
 | GIT_BRANCH_NAME_1       | First git repository branch        |
 | MERCURIAL_BRANCH_NAME_2 | Second mercurial repository branch |
@@ -56,6 +56,8 @@ sudo docker run \
 | ...                     | ...                                |
 | MERCURIAL_BRANCH_NAME_X | Last mercurial repository branch   |
 | GIT_BRANCH_NAME_X       | Last git repository branch         |
+
+Git branch name defaults to mercurial branch name.
 
 Cron job
 --------
