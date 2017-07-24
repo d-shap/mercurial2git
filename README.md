@@ -40,22 +40,22 @@ sudo docker run \
     --rm \
     --name mercurial2git \
     -it \
-    -e HG_REPO_URL='http://localhost/mercurial/repository' \
+    -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository' \
     -e GIT_REPO_URL='https://user:password@github.com/user/repository.git' \
-    -e HG_BRANCH_NAME_1='default' \
+    -e MERCURIAL_BRANCH_NAME_1='default' \
     -e GIT_BRANCH_NAME_1='master' \
         mercurial2git
 ```
 | Parameter         | Value                              |
 | :---------------- | :--------------------------------- |
-| HG_REPO_URL       | Mercurial repository URL           |
+| MERCURIAL_REPO_URL       | Mercurial repository URL           |
 | GIT_REPO_URL      | Mercurial repository URL           |
-| HG_BRANCH_NAME_1  | First mercurial repository branch  |
+| MERCURIAL_BRANCH_NAME_1  | First mercurial repository branch  |
 | GIT_BRANCH_NAME_1 | First git repository branch        |
-| HG_BRANCH_NAME_2  | Second mercurial repository branch |
+| MERCURIAL_BRANCH_NAME_2  | Second mercurial repository branch |
 | GIT_BRANCH_NAME_2 | Second git repository branch       |
 | ...               | ...                                |
-| HG_BRANCH_NAME_X  | Last mercurial repository branch   |
+| MERCURIAL_BRANCH_NAME_X  | Last mercurial repository branch   |
 | GIT_BRANCH_NAME_X | Last git repository branch         |
 
 Cron job

@@ -1,10 +1,12 @@
 #!/bin/bash
-if [ "$HG_REPO_URL" == "" ];
+if [ "$MERCURIAL_REPO_URL" == "" ];
 then
+    echo "Mercurial repository URL not defined"
     exit 1
 fi
 if [ "$GIT_REPO_URL" == "" ];
 then
+    echo "Git repository URL not defined"
     exit 1
 fi
 
@@ -13,9 +15,9 @@ while [ true ];
 do
     nextBranchNumber=$((branchCount+1))
 
-    hgBranchName="HG_BRANCH_NAME_$nextBranchNumber"
-    hgBranch=${!hgBranchName}
-    if [ "$hgBranch" == "" ];
+    mercurialBranchName="MERCURIAL_BRANCH_NAME_$nextBranchNumber"
+    mercurialBranch=${!mercurialBranchName}
+    if [ "$mercurialBranch" == "" ];
     then
         break
     fi
@@ -36,27 +38,30 @@ then
 fi
 
 cd ~
-hg clone $HG_REPO_URL repository
+hg clone $MERCURIAL_REPO_URL repository
 if [ $? -ne 0 ];
 then
-    echo "Mercurial clone failed"
+    echo "Mercurial repository clone failed"
     exit 1
 fi
 cd ~/repository
 
 for (( branchIndex=1; branchIndex<=$branchCount; branchIndex++ ));
 do
-    hgBranchName="HG_BRANCH_NAME_$branchIndex"
-    hgBranch="${!hgBranchName}"
+    mercurialBranchName="MERCURIAL_BRANCH_NAME_$branchIndex"
+    mercurialBranch="${!mercurialBranchName}"
 
     gitBranchName="GIT_BRANCH_NAME_$branchIndex"
     gitBranch="${!gitBranchName}"
 
-    if [ "$gitBranch" == "$hgBranch" ];
+    if [ "$mercurialBranch" != "" ] && [ "$gitBranch" != "" ];
     then
-        hg bookmark -r "$hgBranch" "git-$hgBranch"
-    else
-        hg bookmark -r "$hgBranch" "$gitBranch"
+        if [ "$gitBranch" == "$mercurialBranch" ];
+        then
+            hg bookmark -r "$mercurialBranch" "git-$mercurialBranch"
+        else
+            hg bookmark -r "$mercurialBranch" "$gitBranch"
+        fi
     fi
 done
 
@@ -64,16 +69,18 @@ hg gexport
 
 for (( branchIndex=1; branchIndex<=$branchCount; branchIndex++ ));
 do
-    hgBranchName="HG_BRANCH_NAME_$branchIndex"
-    hgBranch="${!hgBranchName}"
+    mercurialBranchName="MERCURIAL_BRANCH_NAME_$branchIndex"
+    mercurialBranch="${!mercurialBranchName}"
 
     gitBranchName="GIT_BRANCH_NAME_$branchIndex"
     gitBranch="${!gitBranchName}"
 
-    if [ "$gitBranch" == "$hgBranch" ];
+    if [ "$mercurialBranch" != "" ] && [ "$gitBranch" != "" ];
     then
-        git branch -m "git-$hgBranch" "$gitBranch"
+        if [ "$gitBranch" == "$mercurialBranch" ];
+        then
+            git branch -m "git-$mercurialBranch" "$gitBranch"
+        fi
+        git push -u $GIT_REPO_URL "$gitBranch"
     fi
-
-    git push -u $GIT_REPO_URL "$gitBranch"
 done
