@@ -1,4 +1,4 @@
-Remote mercurial - git synchronization
+Mercurial to git synchronization
 ======================================
 The purpose of this image is to push commits from remote mercurial repository to remote git repository.
 
@@ -38,11 +38,13 @@ Usage
 ```
 sudo docker run \
     --rm \
+    --name mercurial2git \
+    -it \
     -e HG_REPO_URL='http://localhost/mercurial/repository' \
     -e GIT_REPO_URL='https://user:password@github.com/user/repository.git' \
     -e HG_BRANCH_NAME_1='default' \
     -e GIT_BRANCH_NAME_1='master' \
-        remotehggit
+        mercurial2git
 ```
 | Parameter         | Value                              |
 | :---------------- | :--------------------------------- |
@@ -58,22 +60,22 @@ sudo docker run \
 
 Cron job
 --------
-Copy **usr/bin/remotehggit** to **/usr/bin** folder
+Copy **usr/bin/m2g** to **/usr/bin** folder
 ```
-sudo cp ./usr/bin/remotehggit /usr/bin
-```
-
-Make **remotehggit** executable
-```
-sudo chmod a+x /usr/bin/remotehggit
+sudo cp ./usr/bin/m2g /usr/bin
 ```
 
-Edit **/usr/bin/remotehggit** and specify synchronization repository URLs and branches
+Make **m2g** executable
 ```
-sudo vi /usr/bin/remotehggit
+sudo chmod a+x /usr/bin/m2g
+```
+
+Edit **/usr/bin/m2g** and specify synchronization repository URLs and branches
+```
+sudo vi /usr/bin/m2g
 ```
 
 Create cron job
 ```
-sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/remotehggit"; } | sudo crontab -
+sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g"; } | sudo crontab -
 ```
