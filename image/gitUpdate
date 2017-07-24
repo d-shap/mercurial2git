@@ -52,7 +52,7 @@ then
 fi
 cd ~/repository
 
-for (( branchIndex=1; branchIndex<=$branchCount; branchIndex++ ));
+for (( branchIndex=1; branchIndex<=$maxBranchNumber; branchIndex++ ));
 do
     mercurialBranchName="MERCURIAL_BRANCH_NAME_$branchIndex"
     mercurialBranch="${!mercurialBranchName}"
@@ -73,7 +73,7 @@ done
 
 hg gexport
 
-for (( branchIndex=1; branchIndex<=$branchCount; branchIndex++ ));
+for (( branchIndex=1; branchIndex<=$maxBranchNumber; branchIndex++ ));
 do
     mercurialBranchName="MERCURIAL_BRANCH_NAME_$branchIndex"
     mercurialBranch="${!mercurialBranchName}"
