@@ -1,14 +1,25 @@
 FROM        debian:jessie
 MAINTAINER  Dmitry Shapovalov
 
+COPY        . /tmp
+
+# Install packages
 RUN         apt-get update && \
-            apt-get install --assume-yes git mercurial mercurial-git && \
-                useradd -m repoowner
+            apt-get install --assume-yes \
+                git \
+                mercurial \
+                mercurial-git && \
+            apt-get clean
 
-COPY        hgrc /etc/mercurial
-COPY        gitUpdate /home/repoowner
+# Create user and group
+RUN         useradd -m repoowner
 
-RUN         chown repoowner:repoowner /home/repoowner/gitUpdate && \
+# Configure mercurial
+RUN         mv /tmp/hgrc /etc/mercurial
+
+# Configure helper scripts
+RUN         mv /tmp/gitUpdate /home/repoowner && \
+            chown repoowner:repoowner /home/repoowner/gitUpdate && \
             chmod a+x /home/repoowner/gitUpdate
 
 USER        repoowner
