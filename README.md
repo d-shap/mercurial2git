@@ -1,5 +1,6 @@
-Mercurial to git synchronization
-======================================
+Mercurial to git synchronization utility
+========================================
+Docker image for mercurial to git synchronization utility.
 The purpose of this image is to push commits from remote mercurial repository to remote git repository.
 
 Suppose organization has internal mercurial repository and all employees push commits to this repository.
