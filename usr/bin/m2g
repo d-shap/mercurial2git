@@ -1,9 +1,37 @@
 #!/bin/bash
-docker run \
-    --rm \
-    -it \
-    -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository' \
-    -e GIT_REPO_URL='https://user:password@github.com/user/repository.git' \
-    -e MERCURIAL_BRANCH_NAME_1='default' \
-    -e GIT_BRANCH_NAME_1='master' \
-        mercurial2git
+
+# repository_1 synchronization
+repository_1() {
+    docker run \
+        --rm \
+        -it \
+        -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository_1' \
+        -e GIT_REPO_URL='https://user:password@github.com/user/repository_1.git' \
+        -e MERCURIAL_BRANCH_NAME_1='default' \
+        -e GIT_BRANCH_NAME_1='master' \
+            mercurial2git
+}
+
+# repository_2 synchronization
+repository_2() {
+    docker run \
+        --rm \
+        -it \
+        -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository_2' \
+        -e GIT_REPO_URL='https://user:password@github.com/user/repository_2.git' \
+        -e MERCURIAL_BRANCH_NAME_1='default' \
+        -e GIT_BRANCH_NAME_1='master' \
+            mercurial2git
+}
+
+case $1 in
+    repository_1)
+        repository_1
+        ;;
+    repository_2)
+        repository_2
+        ;;
+    *)
+        echo "Usage: $0 <repository>"
+        ;;
+esac
