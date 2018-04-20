@@ -1,12 +1,12 @@
 #!/bin/bash
 if [ "$MERCURIAL_REPO_URL" == "" ];
 then
-    echo "Mercurial repository URL not defined"
+    echo "Mercurial repository URL is not defined"
     exit 1
 fi
 if [ "$GIT_REPO_URL" == "" ];
 then
-    echo "Git repository URL not defined"
+    echo "Git repository URL is not defined"
     exit 1
 fi
 
@@ -41,11 +41,11 @@ then
 fi
 
 cd ~
-echo "Clone $MERCURIAL_REPO_URL repository"
+echo "Clone repository: $MERCURIAL_REPO_URL"
 hg clone $MERCURIAL_REPO_URL repository
 if [ $? -ne 0 ];
 then
-    echo "Mercurial repository clone failed"
+    echo "Mercurial repository clone failed: $MERCURIAL_REPO_URL"
     exit 1
 fi
 cd ~/repository
