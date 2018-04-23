@@ -5,8 +5,8 @@ Docker image for mercurial to git synchronization utility.
 The purpose of this image is to push commits from remote mercurial repository to remote git repository.
 
 Suppose organization has internal mercurial repository and all employees push commits to this repository.
-And this organization decides to make some part of this repository public - to publish some code to, for example, GitHub.
-To avoid two repository maintenance, and to prevent mistakes like pushing to the wrong repository mercurial-to-git synchronization could be used.
+And this organization decides to make some part of this repository public &mdash; to publish some code to, for example, GitHub.
+To avoid two repository maintenance, and to prevent mistakes like pushing to the wrong repository mercurial2git synchronization could be used.
 
 In this case all employees still push their commits to internal mercurial repository.
 And synchronization job synchronizes mercurial repository with git repository. 
@@ -61,14 +61,14 @@ sudo docker run \
 
 Git branch name defaults to mercurial branch name and can be omitted.
 
-If e-mail is used as git user name then **GIT_REPO_URL** parameter should look like this:
+If e-mail is used as a git user name then **GIT_REPO_URL** parameter should look like this:
 ```
 sudo docker run ... -e GIT_REPO_URL='https://user%40example.com:password@github.com/user/repository.git' ...
 ```
 
 Cron job
 --------
-Copy **usr/bin/m2g** to **/usr/bin** folder
+Copy **./usr/bin/m2g** to **/usr/bin** folder
 ```
 sudo cp ./usr/bin/m2g /usr/bin
 ```
