@@ -25,12 +25,12 @@ Or only release branches are synchronized, without any feature branches.
 
 Installation
 ------------
-Make **build** executable
+Make **build** executable:
 ``` 
 sudo chmod u+x ./build
 ```
 
-Execute **build**
+Execute **build**:
 ```
 sudo ./build
 ```
@@ -68,22 +68,19 @@ sudo docker run ... -e GIT_REPO_URL='https://user%40example.com:password@github.
 
 Cron job
 --------
-Copy **./usr/bin/m2g** to **/usr/bin** folder
+Copy **./usr/bin/m2g** to **/usr/bin** folder:
 ```
 sudo cp ./usr/bin/m2g /usr/bin
 ```
 
-Make **m2g** executable
+Make **m2g** executable:
 ```
 sudo chmod a+x /usr/bin/m2g
 ```
 
-Edit **/usr/bin/m2g** and specify synchronization repository URLs and branches
-```
-sudo vi /usr/bin/m2g
-```
+Edit **/usr/bin/m2g** and specify synchronization repository URLs and branches.
 
-Create cron job
+Create cron job:
 ```
 sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g <repository>"; echo ""; } | sudo crontab -
 ```
