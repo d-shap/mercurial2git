@@ -5,7 +5,7 @@ Docker image for mercurial to git synchronization utility.
 The purpose of this image is to push commits from remote mercurial repository to remote git repository.
 
 Suppose organization has internal mercurial repository and all employees push commits to this repository.
-And this organization decides to make some part of this repository public &mdash; to publish some code to, for example, GitHub.
+And this organization decides to make some part of this repository public - to publish some code to, for example, GitHub.
 To avoid two repository maintenance, and to prevent mistakes like pushing to the wrong repository mercurial2git synchronization could be used.
 
 In this case all employees still push their commits to internal mercurial repository.
