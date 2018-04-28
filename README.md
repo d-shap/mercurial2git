@@ -56,8 +56,8 @@ sudo docker run \
 | MERCURIAL_BRANCH_NAME_2 | Second mercurial repository branch |
 | GIT_BRANCH_NAME_2       | Second git repository branch       |
 | ...                     | ...                                |
-| MERCURIAL_BRANCH_NAME_X | Last mercurial repository branch   |
-| GIT_BRANCH_NAME_X       | Last git repository branch         |
+| MERCURIAL_BRANCH_NAME_N | Last mercurial repository branch   |
+| GIT_BRANCH_NAME_N       | Last git repository branch         |
 
 Git branch name defaults to mercurial branch name and can be omitted.
 
