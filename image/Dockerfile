@@ -16,16 +16,16 @@ RUN         apt-get update && \
 
 # Create user and group
 RUN         groupadd $RUN_GROUP && \
-            useradd -m -g $RUN_GROUP $RUN_USER
+            useradd -m -g $RUN_GROUP -d /home/repoowner $RUN_USER
 
 # Configure mercurial
 RUN         mv /tmp/hgrc /etc/mercurial
 
 # Configure helper scripts
-RUN         mv /tmp/gitUpdate /home/$RUN_USER && \
-            chown $RUN_USER:$RUN_GROUP /home/$RUN_USER/gitUpdate && \
-            chmod a+x /home/$RUN_USER/gitUpdate
+RUN         mv /tmp/gitUpdate /home/repoowner && \
+            chown $RUN_USER:$RUN_GROUP /home/repoowner/gitUpdate && \
+            chmod a+x /home/repoowner/gitUpdate
 
 USER        $RUN_USER
 
-ENTRYPOINT  ["/home/$RUN_USER/gitUpdate"]
+ENTRYPOINT  ["/home/repoowner/gitUpdate"]
