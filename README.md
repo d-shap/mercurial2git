@@ -45,8 +45,7 @@ sudo ./build
 
 Proceed to configuration.
 
-Configuration
--------------
+### Configuration
 ```
 sudo docker run \
     --rm \
