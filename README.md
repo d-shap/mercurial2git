@@ -25,6 +25,14 @@ Or only release branches are synchronized, without any feature branches.
 
 Installation
 ------------
+### Installation from docker image
+Pull docker image.
+
+Proceed to configuration.
+
+### Installation from source
+Pull project sources from version control system.
+
 Make **build** executable:
 ``` 
 sudo chmod u+x ./build
@@ -35,8 +43,10 @@ Execute **build**:
 sudo ./build
 ```
 
-Usage
------
+Proceed to configuration.
+
+Configuration
+-------------
 ```
 sudo docker run \
     --rm \
