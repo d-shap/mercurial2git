@@ -1,5 +1,4 @@
-Mercurial to git synchronization utility
-========================================
+# Mercurial to git synchronization utility
 Docker image for mercurial to git synchronization utility.
 
 The purpose of this image is to push commits from remote mercurial repository to remote git repository.
@@ -23,8 +22,7 @@ Only specific branches are synchronized.
 For example, mercurial default branch is synchronized with git master branch.
 Or only release branches are synchronized, without any feature branches.
 
-Installation
-------------
+## Installation
 ### Installation from docker image
 Pull docker image.
 
@@ -75,8 +73,7 @@ If e-mail is used as a git user name then **GIT_REPO_URL** parameter should look
 sudo docker run ... -e GIT_REPO_URL='https://user%40example.com:password@github.com/user/repository.git' ...
 ```
 
-Cron job
---------
+## Cron job
 Copy **./usr/bin/m2g** to **/usr/bin** folder:
 ```
 sudo cp ./usr/bin/m2g /usr/bin
@@ -94,6 +91,5 @@ Create cron job:
 sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g <repository>"; echo ""; } | sudo crontab -
 ```
 
-Donation
-========
+# Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
