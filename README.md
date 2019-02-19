@@ -47,7 +47,6 @@ Proceed to configuration.
 ```
 sudo docker run \
     --rm \
-    -it \
     -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository' \
     -e GIT_REPO_URL='https://user:password@github.com/user/repository.git' \
     -e MERCURIAL_BRANCH_NAME_1='default' \
@@ -72,6 +71,14 @@ If e-mail is used as a git user name then **GIT_REPO_URL** parameter should look
 ```
 sudo docker run ... -e GIT_REPO_URL='https://user%40example.com:password@github.com/user/repository.git' ...
 ```
+
+It is possible not to specify user password in the command.
+In this case `-it` argument shold be added to the run command.
+```
+sudo docker run ... -it ...
+```
+
+During synchronization user will be prompted to specify the password.
 
 ## Cron job
 Copy **./usr/bin/m2g** to **/usr/bin** folder:
