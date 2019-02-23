@@ -24,7 +24,7 @@ RUN         mv /tmp/hgrc /etc/mercurial
 # Configure helper scripts
 RUN         mv /tmp/gitUpdate /home/repoowner && \
             chown $RUN_USER:$RUN_GROUP /home/repoowner/gitUpdate && \
-            chmod a+x /home/repoowner/gitUpdate
+            chmod 755 /home/repoowner/gitUpdate
 
 USER        $RUN_USER
 
