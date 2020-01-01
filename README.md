@@ -24,24 +24,24 @@ Or only release branches are synchronized, without any feature branches.
 
 ## Installation
 ### Installation from docker image
-Pull docker image.
+1. Pull docker image.
 
-Proceed to configuration.
+2. Proceed to configuration.
 
 ### Installation from source
-Pull project sources from version control system.
+1. Pull project sources from version control system.
 
-Make **build** executable:
-``` 
-sudo chmod u+x ./build
-```
+2. Make **build** executable:
+    ``` 
+    sudo chmod u+x ./build
+    ```
 
-Execute **build**:
-```
-sudo ./build
-```
+3. Execute **build**:
+    ```
+    sudo ./build
+    ```
 
-Proceed to configuration.
+4. Proceed to configuration.
 
 ### Configuration
 ```
@@ -92,22 +92,22 @@ sudo docker run ... -it ...
 During the synchronization user will be prompted to specify the password.
 
 ## Cron job
-Copy **./usr/bin/m2g** to **/usr/bin** folder:
-```
-sudo cp ./usr/bin/m2g /usr/bin
-```
+1. Copy **./usr/bin/m2g** to **/usr/bin** folder:
+    ```
+    sudo cp ./usr/bin/m2g /usr/bin
+    ```
 
-Make **m2g** executable:
-```
-sudo chmod a+x /usr/bin/m2g
-```
+2. Make **m2g** executable:
+    ```
+    sudo chmod a+x /usr/bin/m2g
+    ```
 
-Edit **/usr/bin/m2g** and specify synchronization repository URLs and branches.
+3. Edit **/usr/bin/m2g** and specify synchronization repository URLs and branches.
 
-Create cron job:
-```
-sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g <repository>"; echo ""; } | sudo crontab -
-```
+4. Create cron job:
+    ```
+    sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g <repository>"; echo ""; } | sudo crontab -
+    ```
 
 # Donation
 If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
