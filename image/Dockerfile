@@ -8,16 +8,17 @@ COPY        . /tmp
 
 # Install common packages and configure environment
 RUN         apt-get update && \
-            apt-get install --assume-yes \
                 apt-utils \
                 build-essential \
-                git \
-                mercurial \
-                mercurial-git \
                 software-properties-common \
                 unzip \
                 vim \
                 wget && \
+            apt-get update && \
+            apt-get install --assume-yes \
+                git \
+                mercurial \
+                mercurial-git && \
             apt-get clean
 
 # Create user and group
