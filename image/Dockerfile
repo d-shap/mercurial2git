@@ -6,12 +6,18 @@ ENV         RUN_GROUP repoowner
 
 COPY        . /tmp
 
-# Install packages
+# Install common packages and configure environment
 RUN         apt-get update && \
             apt-get install --assume-yes \
+                apt-utils \
+                build-essential \
                 git \
                 mercurial \
-                mercurial-git && \
+                mercurial-git \
+                software-properties-common \
+                unzip \
+                vim \
+                wget && \
             apt-get clean
 
 # Create user and group
