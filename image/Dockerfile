@@ -1,8 +1,8 @@
 FROM        debian:stretch
 MAINTAINER  Dmitry Shapovalov
 
-ENV         RUN_USER repoowner
-ENV         RUN_GROUP repoowner
+ENV         RUN_USER=repoowner \
+            RUN_GROUP=repoowner
 
 COPY        . /tmp
 
