@@ -1,4 +1,4 @@
-FROM        debian:buster
+FROM        debian:jessie
 MAINTAINER  Dmitry Shapovalov
 
 ENV         RUN_USER=repoowner \
