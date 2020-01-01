@@ -24,7 +24,7 @@ RUN         apt-get update && \
 RUN         groupadd $RUN_GROUP && \
             useradd -m -g $RUN_GROUP -d /home/repoowner $RUN_USER
 
-# Configure mercurial
+# Configure app
 RUN         mv /tmp/hgrc /etc/mercurial
 
 # Configure helper scripts
