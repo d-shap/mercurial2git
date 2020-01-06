@@ -1,4 +1,4 @@
-FROM        debian:jessie
+FROM        debian:stretch
 MAINTAINER  Dmitry Shapovalov
 
 ENV         RUN_USER=repoowner \
