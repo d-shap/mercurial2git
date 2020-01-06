@@ -94,6 +94,8 @@ do
         then
             git branch -m "git-$mercurialBranch" "$gitBranch"
         fi
+        echo "Pull git branch $gitBranch"
+        git pull -u --ff-only $GIT_REPO_URL "$gitBranch"
         echo "Push git branch $gitBranch"
         git push -u $GIT_REPO_URL "$gitBranch"
     fi
