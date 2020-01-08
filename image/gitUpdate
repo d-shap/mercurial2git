@@ -67,13 +67,14 @@ do
         echo "Create bookmark: $mercurialBranch -> $gitBranch"
         if [ "$gitBranch" == "$mercurialBranch" ];
         then
-            hg bookmark -r "$mercurialBranch" "git-$mercurialBranch"
+            hg bookmark -r "$mercurialBranch" "git-$gitBranch"
         else
             hg bookmark -r "$mercurialBranch" "$gitBranch"
         fi
     fi
 done
 
+echo "Export local git repository"
 hg gexport
 
 for (( branchIndex=1; branchIndex<=$maxBranchNumber; branchIndex++ ));
@@ -92,9 +93,9 @@ do
     then
         if [ "$gitBranch" == "$mercurialBranch" ];
         then
-            git branch -m "git-$mercurialBranch" "$gitBranch"
+            git branch -m "git-$gitBranch" "$gitBranch"
         fi
-        echo "Push git branch $gitBranch"
+        echo "Push branch $gitBranch to remote git"
         git push -u $GIT_REPO_URL "$gitBranch"
     fi
 done
