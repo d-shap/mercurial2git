@@ -25,22 +25,18 @@ Or only release branches are synchronized, without any feature branches.
 ## Installation
 ### Installation from docker image
 1. Pull docker image.
-
 2. Proceed to configuration.
 
 ### Installation from source
 1. Pull project sources from version control system.
-
 2. Make **build** executable:
     ``` 
     sudo chmod u+x ./build
     ```
-
 3. Execute **build**:
     ```
     sudo ./build
     ```
-
 4. Proceed to configuration.
 
 ### Configuration
@@ -96,14 +92,11 @@ During the synchronization user will be prompted to specify the password.
     ```
     sudo cp ./usr/bin/m2g /usr/bin
     ```
-
 2. Make **m2g** executable:
     ```
     sudo chmod a+x /usr/bin/m2g
     ```
-
 3. Edit **/usr/bin/m2g** and specify synchronization repository URLs and branches.
-
 4. Create cron job:
     ```
     sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g <repository>"; echo ""; } | sudo crontab -
