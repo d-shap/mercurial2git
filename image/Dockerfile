@@ -11,8 +11,10 @@ RUN         apt-get update && \
             apt-get install --assume-yes \
                 apt-utils \
                 build-essential \
+                cron \
+                net-tools \
+                procps \
                 software-properties-common \
-                unzip \
                 vim \
                 wget && \
             apt-get update && \
