@@ -12,6 +12,7 @@ RUN         apt-get update && \
                 apt-utils \
                 build-essential \
                 cron \
+                curl \
                 net-tools \
                 procps \
                 software-properties-common \
