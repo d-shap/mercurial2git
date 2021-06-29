@@ -44,7 +44,7 @@ Or only release branches are synchronized, without any feature branches.
 sudo docker run \
     --rm \
     -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository' \
-    -e GIT_REPO_URL='https://user:password@github.com/user/repository.git' \
+    -e GIT_REPO_URL='https://token@github.com/user/repository.git' \
     -e MERCURIAL_BRANCH_NAME_1='default' \
     -e GIT_BRANCH_NAME_1='master' \
         mercurial2git
@@ -66,7 +66,7 @@ Git branch name defaults to mercurial branch name and can be omitted.
 sudo docker run \
     --rm \
     -e MERCURIAL_REPO_URL='http://localhost/mercurial/repository' \
-    -e GIT_REPO_URL='https://user:password@github.com/user/repository.git' \
+    -e GIT_REPO_URL='https://token@github.com/user/repository.git' \
     -e MERCURIAL_BRANCH_NAME_1='default' \
     -e GIT_BRANCH_NAME_1='master' \
     -e MERCURIAL_BRANCH_NAME_2='featureX' \
@@ -74,18 +74,13 @@ sudo docker run \
 ```
 In this example the `default` mercurial branch is synchronized with the `master` git branch, and the `featureX` mercurial branch is synchronized with the `featureX` git branch.
 
-If e-mail is used as a git user name then **GIT_REPO_URL** parameter should look like this:
-```
-sudo docker run ... -e GIT_REPO_URL='https://user%40example.com:password@github.com/user/repository.git' ...
-```
-
-It is possible not to specify user password in the command.
-In this case `-it` argument shold be added to the run command.
+It is possible not to specify token in the command.
+In this case `-it` argument should be added to the run command.
 ```
 sudo docker run ... -it ...
 ```
 
-During the synchronization user will be prompted to specify the password.
+During the synchronization user will be prompted to specify the token (instead of username).
 
 ## Cron job
 1. Copy **./usr/bin/m2g** to **/usr/bin** folder:
