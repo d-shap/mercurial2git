@@ -1,13 +1,14 @@
 FROM        debian:buster
 MAINTAINER  Dmitry Shapovalov
 
-ENV         RUN_USER=repoowner \
-            RUN_GROUP=repoowner
+ENV         RUN_USER="repoowner" \
+            RUN_GROUP="repoowner"
 
 COPY        . /tmp
 
 # Install common packages and configure environment
 RUN         apt-get update && \
+            apt-get upgrade --assume-yes && \
             apt-get install --assume-yes \
                 apt-utils \
                 build-essential \
