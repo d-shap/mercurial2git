@@ -19,11 +19,6 @@ RUN         apt-get update && \
                 software-properties-common \
                 vim \
                 wget && \
-            apt-get update && \
-            apt-get install --assume-yes \
-                git \
-                mercurial \
-                mercurial-git && \
             apt-get clean
 
 # Create user and group
@@ -31,7 +26,13 @@ RUN         groupadd $RUN_GROUP && \
             useradd -m -g $RUN_GROUP -d /home/repoowner $RUN_USER
 
 # Configure app
-RUN         mv /tmp/hgrc /etc/mercurial
+RUN         apt-get update && \
+            apt-get install --assume-yes \
+                git \
+                mercurial \
+                mercurial-git && \
+            apt-get clean && \
+            mv /tmp/hgrc /etc/mercurial
 
 # Configure helper scripts
 RUN         mv /tmp/gitUpdate /home/repoowner && \
