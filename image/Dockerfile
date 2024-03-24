@@ -25,7 +25,7 @@ RUN         apt-get update && \
 RUN         groupadd $RUN_GROUP && \
             useradd -m -g $RUN_GROUP -d /home/repoowner $RUN_USER
 
-# Configure app
+# Configure mercurial-git
 RUN         apt-get update && \
             apt-get install --assume-yes \
                 git \
