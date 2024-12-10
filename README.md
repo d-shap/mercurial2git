@@ -96,6 +96,3 @@ During the synchronization user will be prompted to specify the token (instead o
     ```
     sudo crontab -l | { cat; echo "0 1 * * * /usr/bin/m2g <repository>"; echo ""; } | sudo crontab -
     ```
-
-# Donation
-If you find my code useful, you can [bye me a coffee](https://www.paypal.me/dshapovalov)
